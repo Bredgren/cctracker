@@ -2,7 +2,9 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
+	"net/http"
 	"os"
 	"path/filepath"
 )
@@ -42,4 +44,11 @@ func main() {
 
 	db := newDB(dbName)
 	_ = db
+
+	log.Printf("Starting server on port %d\n", httpPort)
+	stdLog := log.New(os.Stdout, "", 0)
+	stdLog.Printf("Go to http://localhost:%d\n", httpPort)
+	if e := http.ListenAndServe(fmt.Sprintf(":%d", httpPort), nil); e != nil {
+		log.Fatal("Starting server:", e)
+	}
 }
