@@ -100,6 +100,10 @@ func main() {
 	}
 }
 
+type pageInfo struct {
+	Groups []groupInfo
+}
+
 func mainHandler(db *ccDB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		defer func() {
@@ -118,7 +122,9 @@ func mainHandler(db *ccDB) func(w http.ResponseWriter, r *http.Request) {
 			db.update(name, newBest)
 		}
 
-		e := indexTmpl.Execute(w, nil)
+		e := indexTmpl.Execute(w, pageInfo{
+			Groups: exercises,
+		})
 		if e != nil {
 			fmt.Fprint(w, e)
 			return

@@ -1,7 +1,7 @@
 package main
 
 type standard struct {
-	sets, reps int
+	Sets, Reps int
 }
 
 type exInfo struct {
@@ -16,13 +16,10 @@ type exInfo struct {
 
 type groupInfo struct {
 	Name      string
-	Exercises []*exInfo
+	Exercises []exInfo
 }
 
-var exercises = []struct {
-	name      string
-	exercises []exInfo
-}{
+var exercises = []groupInfo{
 	{
 		"Pushups",
 		[]exInfo{

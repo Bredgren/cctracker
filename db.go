@@ -39,7 +39,7 @@ func newDB(name string) *ccDB {
 			log.Fatal("Scanning row:", e)
 		}
 		for _, group := range exercises {
-			for _, ex := range group.exercises {
+			for _, ex := range group.Exercises {
 				if ex.Name == name {
 					ex.Best = best
 				}
@@ -80,7 +80,7 @@ func (db *ccDB) init() {
 	}
 
 	for _, group := range exercises {
-		for _, ex := range group.exercises {
+		for _, ex := range group.Exercises {
 			exStmt.Exec(ex.Name, ex.Best)
 		}
 	}
@@ -88,7 +88,7 @@ func (db *ccDB) init() {
 
 func (db *ccDB) update(exerciseName string, newBest int) {
 	for _, group := range exercises {
-		for _, ex := range group.exercises {
+		for _, ex := range group.Exercises {
 			if ex.Name == exerciseName {
 				ex.Best = newBest
 			}
