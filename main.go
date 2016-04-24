@@ -1,3 +1,5 @@
+// resources/bindata.go generated with go-bindata -prefix "../" -pkg resources ../static/... ../templ/
+// from the resources directory.
 package main
 
 import (
@@ -7,6 +9,9 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+
+	"github.com/Bredgren/cctracker/resources"
+	"github.com/elazarl/go-bindata-assetfs"
 )
 
 var (
@@ -22,7 +27,6 @@ func main() {
 	flag.StringVar(&dbName, "db", dbName, "Database file to use")
 	flag.BoolVar(&logStdout, "logStdout", logStdout, "Log to stdout instead of file")
 	flag.Parse()
-	log.Println(httpPort, dbName)
 
 	if err := os.Mkdir(dataDir, 666); err != nil && !os.IsExist(err) {
 		log.Fatal("Creating data directory:", err)
@@ -44,6 +48,14 @@ func main() {
 
 	db := newDB(dbName)
 	_ = db
+
+	http.Handle("/static/", http.FileServer(
+		&assetfs.AssetFS{
+			Asset:     resources.Asset,
+			AssetDir:  resources.AssetDir,
+			AssetInfo: resources.AssetInfo,
+			Prefix:    "",
+		}))
 
 	log.Printf("Starting server on port %d\n", httpPort)
 	stdLog := log.New(os.Stdout, "", 0)

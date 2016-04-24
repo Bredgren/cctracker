@@ -5,6 +5,8 @@ import (
 	"log"
 	"path/filepath"
 	"strings"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
 type ccDB struct {
