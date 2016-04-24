@@ -60,7 +60,7 @@ func (db *ccDB) init() {
 			log.Fatal("Creating update statement", e)
 		}
 	}()
-	_, e := db.Query("SELECT * FROM Groups")
+	_, e := db.Query("SELECT * FROM Exercises")
 	if e == nil {
 		log.Println("Table already exists, skipping creation")
 		return
