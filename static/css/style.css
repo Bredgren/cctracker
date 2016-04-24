@@ -3,3 +3,35 @@ body {
 	color: rgb(235, 249, 255);
   font-family: monospace;
 }
+
+#header {
+	text-align: center;
+	border: 1px solid black;
+	border-radius: 15px;
+	background: linear-gradient(rgb(36, 36, 56), rgb(13, 13, 19));
+	overflow: hidden;
+}
+
+.group-header {
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 0 10px;
+	margin-top: 15px;
+	background: linear-gradient(rgb(36, 36, 56), rgb(13, 13, 19));
+}
+
+.group-list {
+	border: 1px solid black;
+	border-top: none;
+	border-bottom-right-radius: 15px;
+	border-bottom-left-radius: 15px;
+	margin-top: -15px;
+	padding-top: 15px;
+}
+
+.progress {
+	background: rgba(120, 204, 255, 0.20);
+	height: 10px;
+	margin-top: -10px;
+	width: 28%;
+}
