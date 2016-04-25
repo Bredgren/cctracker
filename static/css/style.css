@@ -1,5 +1,5 @@
 body {
-	background: rgb(25, 25, 35);
+	background: rgb(37, 37, 47);
 	color: rgb(235, 249, 255);
   font-family: monospace;
 }
@@ -12,12 +12,32 @@ body {
 	overflow: hidden;
 }
 
-.group-header {
+.group-header, .exercise-header {
   border: 1px solid black;
   border-radius: 15px;
   padding: 0 10px;
 	margin-top: 15px;
 	background: linear-gradient(rgb(36, 36, 56), rgb(13, 13, 19));
+	overflow: hidden;
+}
+
+.exercise:first-child > .exercise-header {
+    margin: 0;
+}
+
+.group-header .progress {
+    margin-left: -10px;
+}
+
+.exercise-header h3 {
+	float: left;
+	margin: 5px;
+}
+
+.exercise-progress {
+	float: right;
+	font-size: large;
+	margin-top: 4px;
 }
 
 .group-list {

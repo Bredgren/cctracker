@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<div id="header">
-			<h1>Header</h1>
+			<h1>Rank</h1>
 			<div class="progress"></div>
 		</div>
 		<div id="content">
@@ -15,14 +15,19 @@
 			<div class="group">
 				<div class="group-header">
 					<h2>{{.Name}}</h2>
+					<div class="progress" style="width: {{groupProgress .Name}}%;"></div>
 				</div>
 				<div class="group-list">
 					{{range .Exercises}}
 					<div class="exercise">
-						{{.Name}} {{.Best}}/{{(index .Goals 2).Reps}}
-					</div>
-					<div class="description">
-						{{.Performance}}
+						<div class="exercise-header">
+							<h3>{{.Name}}</h3>
+							<div class="exercise-progress">{{.Best}}/{{(index .Goals 2).Reps}}</div>
+							<div class="progress" style="width: {{exerciseProgress .Name}}%;"></div>
+						</div>
+						<div class="description">
+							{{.Performance}}
+						</div>
 					</div>
 					{{end}}
 				</div>

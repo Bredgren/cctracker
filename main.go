@@ -76,6 +76,28 @@ func main() {
 			}
 			return fmt.Sprintf("rgb(%d, %d, %d)", res.r, res.g, res.b)
 		},
+		"groupProgress": func(group string) float64 {
+			var count, max int
+			for _, g := range exercises {
+				if g.Name == group {
+					for _, ex := range g.Exercises {
+						count += ex.Best
+						max += ex.Goals[2].Reps
+					}
+				}
+			}
+			return float64(count) / float64(max) * 100
+		},
+		"exerciseProgress": func(exercise string) float64 {
+			for _, g := range exercises {
+				for _, ex := range g.Exercises {
+					if ex.Name == exercise {
+						return float64(ex.Best) / float64(ex.Goals[2].Reps) * 100
+					}
+				}
+			}
+			return 0.0
+		},
 	}).Parse(string(tmplBytes))
 	if e != nil {
 		log.Fatal("Creating indexTmpl:", e)
